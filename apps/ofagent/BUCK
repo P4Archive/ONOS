@@ -1,0 +1,37 @@
+COMPILE_DEPS = [
+    '//lib:CORE_DEPS',
+    '//core/store/serializers:onos-core-serializers',
+    '//core/common:onos-core-common',
+    '//incubator/api:onos-incubator-api',
+    '//cli:onos-cli',
+    '//lib:org.apache.karaf.shell.console',
+    '//lib:netty-transport',
+    '//lib:netty-buffer',
+    '//lib:netty-codec',
+    '//lib:netty-handler',
+    '//lib:openflowj',
+    '//lib:javax.ws.rs-api',
+    '//utils/rest:onlab-rest',
+]
+
+TEST_DEPS = [
+    '//lib:TEST_ADAPTERS',
+    '//core/api:onos-api-tests',
+    '//core/common:onos-core-common-tests',
+    '//lib:TEST_REST',
+    '//lib:jersey-server',
+    '//web/api:onos-rest-tests',
+]
+
+osgi_jar_with_tests (
+    deps = COMPILE_DEPS,
+    test_deps = TEST_DEPS,
+    web_context = '/onos/v1/ofagent',
+)
+
+onos_app (
+    title = 'OpenFlow Agent App',
+    category = 'Traffic Steering',
+    url = 'http://onosproject.org',
+    description = 'OpenFlow agent application for virtualization subsystem.',
+)
